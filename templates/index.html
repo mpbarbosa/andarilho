@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block body %}
+    <ul>
+      <li><a href="https://servicodados.ibge.gov.br/api/docs/localidades">Documentação da API de Localidades</a></li>
+      <li><a href="{{ url_for('aglomeracoes_urbanas') }}">Aglomerações urbanas por nome</a></li>
+      <li><a href="{{ url_for('regioes') }}">Regiões</a></li>
+      <li><a href="{{ url_for('ufs') }}">UFs</a></li>
+    </ul>
+{% endblock %}
