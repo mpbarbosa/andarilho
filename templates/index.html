@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
 {% block body %}
+{{ super() }}
     <ul>
       <li><a href="https://servicodados.ibge.gov.br/api/docs/localidades">Documentação da API de Localidades</a></li>
-      <li><a href="{{ url_for('aglomeracoes_urbanas') }}">Aglomerações urbanas por nome</a></li>
-      <li><a href="{{ url_for('regioes') }}">Regiões</a></li>
-      <li><a href="{{ url_for('ufs') }}">UFs</a></li>
+      <li><a href="{{ url_for('tipo_loc',tipo_loc='aglomeracoes-urbanas') }}">Aglomerações urbanas por nome</a></li>
+      <li><a href="{{ url_for('tipo_loc',tipo_loc='distritos') }}">Distritos</a></li>
+      <li><a href="{{ url_for('tipo_loc2',tipo_loc='mesorregioes') }}">Mesorregiões</a></li>
+      <li><a href="{{ url_for('tipo_loc2',tipo_loc='microrregioes') }}">Microrregiões</a></li>
+      <li><a href="{{ url_for('tipo_loc2',tipo_loc='tipo_loc=regioes') }}">Regiões</a></li>
+      <li><a href="{{ url_for('tipo_loc',tipo_loc='estados') }}">UFs</a></li>
     </ul>
 {% endblock %}
