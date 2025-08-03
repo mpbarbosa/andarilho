@@ -1,17 +1,19 @@
 {% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="{{ url_for('static',filename='js/guia_js/guia.js') }}"></script>
+{% endblock %}
 {% block body %}
 {{ super() }}
+    <p><a href="https://servicodados.ibge.gov.br/api/docs/localidades">Documentação da API de Localidades</a></p>
     <ul>
-      <li><a href="https://servicodados.ibge.gov.br/api/docs/localidades">Documentação da API de Localidades</a></li>
-      <li><a href="{{ url_for('tipo_loc',tipo_loc='aglomeracoes-urbanas') }}">Aglomerações urbanas por nome</a></li>
-      <li><a href="{{ url_for('tipo_loc',tipo_loc='distritos') }}">Distritos</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='mesorregioes') }}">Mesorregiões</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='microrregioes') }}">Microrregiões</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='municipios') }}">Municipios</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='paises') }}">Países</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='paises') }}">Países</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='regioes') }}">Regiões</a></li>
-      <li><a href="{{ url_for('tipo_loc2',tipo_loc='regioesimediatas') }}">Regiões Imediatas</a></li>
-      <li><a href="{{ url_for('tipo_loc',tipo_loc='estados') }}">UFs</a></li>
+      {% for tipo in tipos_loc.keys() %}
+      <li><a href="{{ url_for('tipo_loc',tipo_loc=tipo) }}">{{ tipos_loc[tipo] }}</a></li>
+      {% endfor %}
     </ul>
+<p id="myLocation"></p>
+<script>
+  getLocation();
+</script>
 {% endblock %}

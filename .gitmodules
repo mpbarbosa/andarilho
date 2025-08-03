@@ -1,0 +1,3 @@
+[submodule "static/js/guia_js"]
+	path = static/js/guia_js
+	url = https://github.com/mpbarbosa/guia_js.git

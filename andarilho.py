@@ -7,11 +7,6 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-
 def ibge_host():
     return "https://servicodados.ibge.gov.br"
 
@@ -48,8 +43,9 @@ def render_localidade2(tipo_loc):
     return render_template("body_loc.html", ibge_data=ibge_data, descr_tipo_loc=descr)
 
 
-def descr_tipo_loc(tipo_loc):
-    descr = {
+def tipos_loc():
+    tipos = {
+        "aglomeracos_urbanas": "Aglomerações Urbanas",
         "distritos": "Distritos",
         "mesorregioes": "Mesorregiões",
         "microrregios": "Microrregiões",
@@ -61,23 +57,22 @@ def descr_tipo_loc(tipo_loc):
         "regioesintermediarias": "Regiões Intermediárias",
         "regioesmetropolitanas": "Regiões Metropolitanas",
         "subdistritos": "Subdistritos",
-        "ufs": "UFs",
+        "estados": "UFs",
     }
-    return descr[tipo_loc]
+    return tipos
 
 
-@app.route("/aglomeracoes_urbanas")
-def aglomeracoes_urbanas():
-    return get_api_data("aglomeracoes-urbanas")
+def descr_tipo_loc(tipo_loc):
+    return tipos_loc()[tipo_loc]
+
+
+@app.route("/")
+def home():
+    return render_template("index.html", tipos_loc=tipos_loc())
 
 
 @app.route("/localidades/<tipo_loc>")
 def tipo_loc(tipo_loc):
-    return render_localidade(tipo_loc)
-
-
-@app.route("/localidades2<tipo_loc>")
-def tipo_loc2(tipo_loc):
     return render_localidade2(tipo_loc)
 
 
