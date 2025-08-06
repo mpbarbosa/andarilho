@@ -4,7 +4,7 @@
   <h1>{{ descr_tipo_loc }}</h1> 
     <ul>
     {% for localidade in ibge_data %}
-    <li>{{ localidade }}</li> 
+    <li><a href="{{ url_for('loc',tipo_loc=tipo_loc,loc_id=localidade['id']) }}">{{ localidade['nome'] }}</a>{{ localidade }}</li> 
     {% endfor %}
     </ul>
 {% endblock %}

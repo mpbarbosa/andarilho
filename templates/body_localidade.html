@@ -1,0 +1,10 @@
+{% extends "head.html" %} {% block body %} {{ super() }}
+<h1>{{ descr_tipo_loc }}</h1>
+<ul>
+  {% if tipo_loc == 'aglomeracoes-urbanas' %} {% for localidade in ibge_data %}
+  <li>{{ localidade['nome'] }} {{ localidade }}</li>
+  {% endfor %} {% else %} {% for localidade in ibge_data %}
+  <li>{{ localidade }}</li>
+  {% endfor %} {% endif %}
+</ul>
+{% endblock %}
