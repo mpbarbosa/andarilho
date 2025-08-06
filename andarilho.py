@@ -54,19 +54,22 @@ def render_localidade(tipo_loc, loc_id):
 
 def tipos_loc():
     tipos = {
-        "aglomeracoes-urbanas": "Aglomerações Urbanas",
-        "distritos": "Distritos",
-        "mesorregioes": "Mesorregiões",
-        "microrregioes": "Microrregiões",
-        "municipios": "Municípios",
-        "paises": "Países",
-        "regioes": "Regiões",
-        "regioes-imediatas": "Regiões Imediatas",
-        "regioes-integradas-de-desenvolvimento": "Regoões Integradas de Desenvolvimento",
-        "regioes-intermediarias": "Regiões Intermediárias",
-        "regioes-metropolitanas": "Regiões Metropolitanas",
-        "subdistritos": "Subdistritos",
-        "estados": "UFs",
+        "aglomeracoes-urbanas": ["Aglomerações Urbanas", "Aglomeração urbana"],
+        "distritos": ["Distritos", "Distrito"],
+        "mesorregioes": ["Mesorregiões", "Mesorregião"],
+        "microrregioes": ["Microrregiões", "Microrregião"],
+        "municipios": ["Municípios", "Município"],
+        "paises": ["Países", "País"],
+        "regioes": ["Regiões", "Região"],
+        "regioes-imediatas": ["Regiões Imediatas", "Região imediata"],
+        "regioes-integradas-de-desenvolvimento": [
+            "Regiões Integradas de Desenvolvimento",
+            "Região integrada de desenvolvimento",
+        ],
+        "regioes-intermediarias": ["Regiões Intermediárias", "Região intermediária"],
+        "regioes-metropolitanas": ["Regiões Metropolitanas", "Região metropolitana"],
+        "subdistritos": ["Subdistritos", "Subdistrito"],
+        "estados": ["UFs", "UF"],
     }
     return tipos
 

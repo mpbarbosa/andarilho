@@ -1,0 +1,8 @@
+<p></p><h2>{{ ibge_data['nome'] }}</h2></p>
+Localização:<br>
+Microrregião: {{ ibge_data['microrregiao']['nome'] }} <br>
+Mesorregião: {{ ibge_data['microrregiao']['mesorregiao']['nome'] }} <br>
+Região imediata: {{ ibge_data['regiao-imediata']['nome'] }}<br>
+Região intermediária: {{ ibge_data['regiao-imediata']['regiao-intermediaria']['nome'] }}<br>
+  {{ ibge_data }}
+</ul>

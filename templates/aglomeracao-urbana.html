@@ -1,0 +1,12 @@
+<p><h2>{{ ibge_data[0]['nome'] }}</h2></p>
+Municípios:</br>
+<ul>
+  {% for municipio in ibge_data[0]['municipios'] %}
+  <li>
+    <a href="{{ url_for('loc',tipo_loc='municipios',loc_id=municipio['id']) }}"
+      >{{ municipio['nome'] }}</a
+    >
+    / {{ municipio['UF']['sigla'] }}
+  </li>
+  {% endfor %} {{ ibge_data }}
+</ul>
