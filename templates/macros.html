@@ -1,3 +1,11 @@
 {% macro render_a_uf(id,uf) %}
 <a href="{{ url_for('uf',uf_id = id) }}">{{ uf }}</a>
-{% endmacro %}
+{% endmacro %} {% macro render_url_uf_nome(nomeUF,idUF) %}
+<a href="{{ url_for('loc',tipo_loc='estados',loc_id=idUF) }}">{{ nomeUF }}</a>
+  >{{ nomeUF }}</a
+>
+{% endmacro %} {% macro id_uf_do_municipio(ibge_data) %} {{
+ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['id'] }} {% endmacro
+%} {% macro nome_uf_do_municipio(ibge_data) %} {{
+ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['nome'] }} {%
+endmacro %}

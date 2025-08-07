@@ -8,5 +8,9 @@
 {% with ibge_data=ibge_data %}
 {% include "municipio.html" %}
 {% endwith %}
+{% elif tipo_loc == "estados" %}
+{% with ibge_data=ibge_data %}
+{% include "uf.html" %}
+{% endwith %}
 {% endif %}
 {% endblock %}

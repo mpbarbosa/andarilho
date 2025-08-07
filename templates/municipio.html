@@ -1,8 +1,10 @@
-<p></p><h2>{{ ibge_data['nome'] }}</h2></p>
+{% import "macros.html" as macros %}
+<p></p><h2>{{ ibge_data['nome'] }} / {{ ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['sigla'] }}</h2></p>
 Localização:<br>
-Microrregião: {{ ibge_data['microrregiao']['nome'] }} <br>
-Mesorregião: {{ ibge_data['microrregiao']['mesorregiao']['nome'] }} <br>
-Região imediata: {{ ibge_data['regiao-imediata']['nome'] }}<br>
-Região intermediária: {{ ibge_data['regiao-imediata']['regiao-intermediaria']['nome'] }}<br>
-  {{ ibge_data }}
+<strong>Microrregião:</strong> {{ ibge_data['microrregiao']['nome'] }} <br>
+<strong>Mesorregião:</strong> {{ ibge_data['microrregiao']['mesorregiao']['nome'] }} <br>
+<strong>Região imediata:</strong> {{ ibge_data['regiao-imediata']['nome'] }}<br>
+<strong>Região intermediária:</strong> {{ ibge_data['regiao-imediata']['regiao-intermediaria']['nome'] }}<br>
+<strong>UF:</strong>{{ macros.render_url_uf_nome(macros.nome_uf_do_municipio(ibge_data),macros.id_uf_do_municipio(ibge_data)) }}<br>
+<strong>Região:</strong>{{ ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['regiao']['nome'] }}<br>
 </ul>

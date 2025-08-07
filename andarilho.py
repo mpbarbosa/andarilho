@@ -52,13 +52,16 @@ def render_localidade(tipo_loc, loc_id):
     )
 
 
+# TODO: o dicionário abaixo pode ir para um arquivo JSON
 def tipos_loc():
     tipos = {
-        "aglomeracoes-urbanas": ["Aglomerações Urbanas", "Aglomeração urbana"],
-        "distritos": ["Distritos", "Distrito"],
-        "mesorregioes": ["Mesorregiões", "Mesorregião"],
-        "microrregioes": ["Microrregiões", "Microrregião"],
-        "municipios": ["Municípios", "Município"],
+        "aglomeracoes-urbanas": {
+            "descr": ["Aglomerações Urbanas", "Aglomeração urbana"]
+        },
+        "distritos": {"descr": ["Distritos", "Distrito"]},
+        "mesorregioes": {"descr": ["Mesorregiões", "Mesorregião"]},
+        "microrregioes": {"descr": ["Microrregiões", "Microrregião"]},
+        "municipios": {"descr": ["Municípios", "Município"]},
         "paises": ["Países", "País"],
         "regioes": ["Regiões", "Região"],
         "regioes-imediatas": ["Regiões Imediatas", "Região imediata"],
@@ -91,18 +94,3 @@ def tipo_loc(tipo_loc):
 @app.route("/localidades/<tipo_loc>/<loc_id>")
 def loc(tipo_loc, loc_id):
     return render_localidade(tipo_loc, loc_id)
-
-
-@app.route("/ufs")
-def ufs():
-    with open("./ibge_data/localidades/ufs.geojson", "r") as f:
-        ibge_data = json.load(f)
-    return render_template("ufs.html", ibge_data=ibge_data)
-
-
-@app.route("/uf/<uf_id>")
-def uf(uf_id):
-    url = f"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{uf_id}"
-    r = requests.get(url)
-    ibge_data = json.loads(r.content)
-    return render_template("uf.html", ibge_data=ibge_data)

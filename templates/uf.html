@@ -1,57 +1,11 @@
-{% import "macros.html" as macros %}
-{% extends "base.html" %}
-{% block title %}{{ super() }} - UF: {{ ibge_data['nome'] }} ({{ ibge_data['sigla'] }}) {% endblock %}
-{% block body %}
-    {{ super() }}
-    <h1>UF: {{ ibge_data['nome'] }} ({{ ibge_data['sigla'] }})</h1> 
-    <h2>id: <div id="uf_id_section">{{ ibge_data['id'] }}</div>, região: {{ ibge_data['regiao']['nome'] }} ({{ ibge_data['regiao']['sigla'] }})</h2>
-    <p>{{ ibge_data }}</p>
-    <button id="fetchButton" onclick="loadMunicipios()">Municípios</button>
-    <div id="municipiosSection">
-        <p>Your location information will appear here.</p>
-    </div>
-    <script>
-        async function loadMunicipios() {
-            const uf_id_section = document.getElementById("uf_id_section")
-            const uf_id = uf_id_section.innerHTML
-            const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf_id}/municipios`;
-            const municipiosSection = document.getElementById('municipiosSection');
-            const fetchButton = document.getElementById('fetchButton');
-            
-            console.log("url: " + apiUrl)
-            // Show loading state
-            municipiosSection.innerHTML = '<p class="loading">Carregando municípios...</p>';
-            fetchButton.disabled = true;
-            fetchButton.textContent = 'Carregando...';
-            
-            try {
-                const response = await fetch(apiUrl);
-                
-                if (!response.ok) {
-                    throw new Error(`Erro na requisição: ${response.status}`);
-                }
-                
-                const municipios = await response.json();
-                
-                // Create HTML for the municipalities
-                let municipiosHTML = '<h2>Municípios</h2>';
-                municipiosHTML += `<p>Total: ${municipios.length} municípios</p>`;
-                municipiosHTML += '<div class="municipios-list">';
-                
-                municipios.forEach(municipio => {
-                    municipiosHTML += `<div class="municipio">${municipio.nome}</div>`;
-                });
-                
-                municipiosHTML += '</div>';
-                municipiosSection.innerHTML = municipiosHTML;
-                
-            } catch (error) {
-                municipiosSection.innerHTML = `<p class="error">Erro ao carregar os dados: ${error.message}</p>`;
-                console.error('Erro:', error);
-            } finally {
-                fetchButton.disabled = false;
-                fetchButton.textContent = 'Buscar Municípios';
-            }
-        }
-    </script>
-  {% endblock %}
+<p><h2>{{ ibge_data['nome'] }}</h2></p>
+Municípios:</br>
+<ul>
+  {% for municipio in ibge_data['municipios'] %}
+  <li>
+    <a href="{{ url_for('loc',tipo_loc='municipios',loc_id=municipio['id']) }}"
+      >{{ municipio['nome'] }}</a
+    >
+  </li>
+  {% endfor %} {{ ibge_data }}
+</ul>
