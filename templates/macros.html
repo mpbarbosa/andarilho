@@ -4,7 +4,11 @@
 <a href="{{ url_for('loc',tipo_loc='estados',loc_id=idUF) }}">{{ nomeUF }}</a>
   >{{ nomeUF }}</a
 >
-{% endmacro %} {% macro id_uf_do_municipio(ibge_data) %} {{
+{% endmacro %} 
+{% macro render_url_munic_nome(nomeMunic,idMunic) %}
+<a href="{{ url_for('loc',tipo_loc='municipios',loc_id=idMunic) }}">{{ nomeMunic }}</a>
+{% endmacro %}
+{% macro id_uf_do_municipio(ibge_data) %} {{
 ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['id'] }} {% endmacro
 %} {% macro nome_uf_do_municipio(ibge_data) %} {{
 ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['nome'] }} {%

@@ -1,11 +1,4 @@
-<p><h2>{{ ibge_data['nome'] }}</h2></p>
-Municípios:</br>
-<ul>
-  {% for municipio in ibge_data['municipios'] %}
-  <li>
-    <a href="{{ url_for('loc',tipo_loc='municipios',loc_id=municipio['id']) }}"
-      >{{ municipio['nome'] }}</a
-    >
-  </li>
-  {% endfor %} {{ ibge_data }}
-</ul>
+<p>Municipios:</p>
+{% with sub_locs=secoes['municipios'], tipo_sub_loc='municipios' %}
+{% include "body_sub_localidade.html" %}
+{% endwith %}

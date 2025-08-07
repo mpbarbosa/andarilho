@@ -9,7 +9,7 @@
     <p><a href="https://servicodados.ibge.gov.br/api/docs/localidades">Documentação da API de Localidades</a></p>
     <ul>
       {% for tipo in tipos_loc.keys() %}
-      <li><a href="{{ url_for('tipo_loc',tipo_loc=tipo) }}">{{ tipos_loc[tipo][0] }}</a></li>
+      <li><a href="{{ url_for('tipo_loc',tipo_loc=tipo) }}">{{ tipos_loc[tipo]['descr'][0] }}</a></li>
       {% endfor %}
     </ul>
 <p id="myLocation"></p>
