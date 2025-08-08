@@ -1,15 +1,15 @@
 {% macro render_a_uf(id,uf) %}
 <a href="{{ url_for('uf',uf_id = id) }}">{{ uf }}</a>
-{% endmacro %} {% macro render_url_uf_nome(nomeUF,idUF) %}
-<a href="{{ url_for('loc',tipo_loc='estados',loc_id=idUF) }}">{{ nomeUF }}</a>
-  >{{ nomeUF }}</a
->
-{% endmacro %} 
-{% macro render_url_munic_nome(nomeMunic,idMunic) %}
-<a href="{{ url_for('loc',tipo_loc='municipios',loc_id=idMunic) }}">{{ nomeMunic }}</a>
-{% endmacro %}
-{% macro id_uf_do_municipio(ibge_data) %} {{
+{% endmacro %} {% macro render_url_loc(tipo_loc,nome,id) %}
+<a href="{{ url_for('loc',tipo_loc=tipo_loc,loc_id=id) }}">{{ nome }}</a>
+{% endmacro %} {% macro id_uf_do_municipio(ibge_data) %} {{
 ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['id'] }} {% endmacro
 %} {% macro nome_uf_do_municipio(ibge_data) %} {{
 ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['nome'] }} {%
+endmacro %} {% macro nome_micreg_do_municipio(ibge_data) %} {{
+ibge_data['microrregiao']['nome'] }} {% endmacro %} {% macro
+nome_regiao_do_municipio(ibge_data) %} {{
+ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['regiao']['nome'] }}
+{% endmacro %} {% macro id_regiao_do_municipio(ibge_data) %} {{
+ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['regiao']['id'] }} {%
 endmacro %}

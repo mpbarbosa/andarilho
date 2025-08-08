@@ -1,17 +1,24 @@
 {% extends "head.html" %} {% block body %} {{ super() }}
 {{ descr_tipo_loc[1] }}</br>
-<h2>{{ ibge_data['nome'] }}</h2>
 {% if tipo_loc == "aglomeracoes-urbanas" %}
-{% with ibge_data=ibge_data %}
+{% with ibge_data=ibge_data, obj_loc=obj_loc %}
 {% include "aglomeracao-urbana.html" %}
 {% endwith %}
 {% elif tipo_loc == "municipios" %}
-{% with ibge_data=ibge_data %}
+{% with ibge_data=ibge_data, secoes_pertence=secoes_pertence %}
 {% include "municipio.html" %}
 {% endwith %}
 {% elif tipo_loc == "estados" %}
 {% with ibge_data=ibge_data, secoes=secoes, sub_loc=sub_loc %}
 {% include "uf.html" %}
+{% endwith %}
+{% elif tipo_loc == "regioes" %}
+{% with ibge_data=ibge_data, obj_loc=obj_loc %}
+{% include "regiao.html" %}
+{% endwith %}
+{% elif tipo_loc == "distritos" %}
+{% with ibge_data=ibge_data, obj_loc=obj_loc %}
+{% include "distrito.html" %}
 {% endwith %}
 {% endif %}
 {% endblock %}

@@ -1,9 +1,6 @@
 {% import "macros.html" as macros %}
 <ul>
 {% for loc in sub_locs %}
-<li>{% if tipo_sub_loc == 'municipios' %}
-  {{ macros.render_url_munic_nome( loc['nome'], loc['id']) }}
-  {% endif %}
-</li>
+<li>{{ macros.render_url_loc(tipo_sub_loc, loc['nome'], loc['id']) }}</li>
 {% endfor %}
 </ul>
