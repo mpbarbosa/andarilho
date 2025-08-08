@@ -9,6 +9,10 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 
+def file_ext() -> str:
+    return "jinja"
+
+
 def ibge_host() -> str:
     return "https://servicodados.ibge.gov.br"
 
@@ -25,7 +29,10 @@ def render_tipo_localidade(tipo_loc: str) -> str:
     ibge_data = get_api_data(tipo_loc)
     descr = descr_tipo_loc(tipo_loc)
     return render_template(
-        "body_locs.html", tipo_loc=tipo_loc, ibge_data=ibge_data, descr_tipo_loc=descr
+        f"body_locs.{file_ext()}",
+        tipo_loc=tipo_loc,
+        ibge_data=ibge_data,
+        descr_tipo_loc=descr,
     )
 
 
@@ -120,11 +127,13 @@ def render_localidade(
     descr = descr_tipo_loc(tipo_loc)
     secoes = {}
     secoes_pertence = {}
-    htmlTemplate2 = "body_localidade.html" if htmlTemplate is None else htmlTemplate
+    htmlTemplate2 = (
+        f"body_localidade.{file_ext()}" if htmlTemplate is None else htmlTemplate
+    )
     if sub_loc is None:
         for secao in (tipos_loc()[tipo_loc]).get("secoes", []):
             secoes[secao] = ls_sub_loc(tipo_loc, loc_id=loc_id, ls_sub_loc=secao)
-        htmlTemplate = "body_localidade.html"
+        htmlTemplate = f"body_localidade.{file_ext()}"
     for secao in tipos_loc()[tipo_loc].get("secoes-internas", []):
         secaoDados = (
             ibge_data[0]["municipios"] if isinstance(secao, list) else ibge_data[secao]
@@ -157,7 +166,7 @@ def ls_sub_loc(tipo_loc, loc_id, ls_sub_loc) -> str:
 
 @app.route("/")
 def home() -> str:
-    return render_template("index.html", tipos_loc=tipos_loc())
+    return render_template(f"index.{file_ext()}", tipos_loc=tipos_loc())
 
 
 @app.route("/localidades/<tipo_loc>")

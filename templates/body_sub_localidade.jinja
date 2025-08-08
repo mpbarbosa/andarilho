@@ -1,4 +1,4 @@
-{% import "macros.html" as macros %}
+{% import "macros.jinja" as macros %}
 <ul>
 {% for loc in sub_locs %}
 <li>{{ macros.render_url_loc(tipo_sub_loc, loc['nome'], loc['id']) }}</li>

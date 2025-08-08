@@ -1,6 +1,7 @@
-{% extends "base.html" %}
+{% extends "base.jinja" %}
 {% block head %}
 {{ super() }}
+<!-- #TODO remover a url abaixo para o python ou macro -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="{{ url_for('static',filename='js/guia_js/guia.js') }}"></script>
 {% endblock %}

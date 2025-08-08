@@ -1,7 +1,7 @@
 class Localidade:
 
-    def __init__(self, json_obj: dict):
-        self.json_obj = json_obj
+    def __init__(self, json_obj: dict | list):
+        self.json_obj: dict | list = json_obj
         self.id: str = self.extrai_id()
         self.nome: str = self.extrai_nome()
 
@@ -17,12 +17,15 @@ class Localidade:
     def extrai_nome(self) -> str:
         return self.json_obj["nome"]
 
+    def get_json_obj(self) -> dict | list:
+        return self.json_obj
+
 
 class Regiao(Localidade):
 
     def __init__(self, json_obj):
         super().__init__(json_obj)
-        self.sigla: str = json_obj["sigla"]
+        self.sigla: str = self.get_json_obj()["sigla"]
 
     def get_sigla(self) -> str:
         return self.sigla

@@ -1,4 +1,4 @@
-{% import "macros.html" as macros %}
+{% import "macros.jinja" as macros %}
 <h2>{{ ibge_data['nome'] }} / {{ ibge_data['regiao-imediata']['regiao-intermediaria']['UF']['sigla'] }}</h2>
 <strong>Localização:</strong><br>
 Microrregião: {{ macros.render_url_loc('microrregioes',macros.nome_micreg_do_municipio(ibge_data),ibge_data['microrregiao']['id']) }} <br>

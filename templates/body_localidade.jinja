@@ -1,24 +1,28 @@
-{% extends "head.html" %} {% block body %} {{ super() }}
-{{ descr_tipo_loc[1] }}</br>
+{% extends "head.jinja" %} 
+{% block body %} {{ super() }}
+Tipo de localidade: {{ descr_tipo_loc[1] }}</br>
+Nome:
 {% if tipo_loc == "aglomeracoes-urbanas" %}
 {% with ibge_data=ibge_data, obj_loc=obj_loc %}
-{% include "aglomeracao-urbana.html" %}
+{% include "aglomeracao-urbana.jinja" %}
 {% endwith %}
 {% elif tipo_loc == "municipios" %}
 {% with ibge_data=ibge_data, secoes_pertence=secoes_pertence %}
-{% include "municipio.html" %}
+{% include "municipio.jinja" %}
 {% endwith %}
 {% elif tipo_loc == "estados" %}
 {% with ibge_data=ibge_data, secoes=secoes, sub_loc=sub_loc %}
-{% include "uf.html" %}
+{% include "uf.jinja" %}
 {% endwith %}
 {% elif tipo_loc == "regioes" %}
 {% with ibge_data=ibge_data, obj_loc=obj_loc %}
-{% include "regiao.html" %}
+{% include "regiao.jinja" %}
 {% endwith %}
 {% elif tipo_loc == "distritos" %}
 {% with ibge_data=ibge_data, obj_loc=obj_loc %}
-{% include "distrito.html" %}
+{% include "distrito.jinja" %}
 {% endwith %}
 {% endif %}
+<p>{{ obj_loc.get_json_obj() }}</p>
 {% endblock %}
+

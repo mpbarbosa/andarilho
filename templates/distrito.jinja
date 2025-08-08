@@ -1,0 +1,6 @@
+{% import "macros.jinja" as macros %}
+<h1>{{ obj_loc.get_nome() }} / {{ obj_loc.get_uf().get_sigla() }}</h1> 
+<ul>
+<li>Municipio: {{ macros.render_url_loc('municipios',obj_loc.get_municipio().get_nome(),obj_loc.get_municipio().get_id()) }}</li> 
+<li>UF: {{ macros.render_url_loc('estados',obj_loc.get_uf().get_nome(),obj_loc.get_uf().get_id()) }}</li> 
+</ul>
